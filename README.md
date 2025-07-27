@@ -1,82 +1,76 @@
-# Fraud-Detection-Dataset-Profiler-and-Cleaner
-# 🔍 End-to-End Automated Data Profiler for Amazon Fraud Detector (AFD)
+# 🛡️ Fraud Detection Dataset Profiler and Cleaner
 
-This project implements an automated data profiling pipeline to support fraud detection using [Amazon Fraud Detector (AFD)](https://aws.amazon.com/fraud-detector/). It ensures the input data is pre-validated and formatted with enriched profiling insights, enabling higher fraud detection model accuracy and operational efficiency.
+An end-to-end **automated data preprocessing pipeline** designed to accelerate fraud detection model development using AWS services. This project profiles, cleans, and transforms raw datasets into model-ready formats, generating detailed reports and ensuring reproducibility via infrastructure-as-code.
 
-> 🧠 Based on the AWS blog: “Automated data profiler for Amazon Fraud Detector” by Hao Zhou and Anqi Cheng
-
----
-
-## 📌 Table of Contents
-
-- [Overview](#overview)
-- [Architecture](#architecture)
-- [Key Features](#key-features)
-- [Tech Stack](#tech-stack)
-- [Setup Instructions](#setup-instructions)
-- [Folder Structure](#folder-structure)
-- [Use Cases](#use-cases)
-- [Authors](#authors)
-- [References](#references)
+[🔗 Resume Project Link](https://github.com/Lokesh05122003/Fraud-Detection-Dataset-Profiler-and-Cleaner/tree/main?tab=readme-ov-file#%EF%B8%8F-setup-instructions)
 
 ---
 
-## 🧾 Overview
+## 📌 Overview
 
-Data quality is crucial in building effective fraud detection models. This project automates the entire data profiling workflow for Amazon Fraud Detector, including:
+This solution automates the process of:
 
-- Validating input schema.
-- Extracting feature distributions and statistics.
-- Flagging missing values, invalid categories, and outliers.
-- Generating visual reports and profiling logs.
-- Creating and deploying the profiler pipeline using **AWS Lambda**, **Glue**, **S3**, and **Step Functions**.
+- Profiling fraud detection datasets
+- Cleaning and transforming input CSV data
+- Generating data quality reports
+- Delivering cleaned data for ML training
+- Deploying infrastructure using AWS CloudFormation
 
-This profiler ensures that the data used for training or inference in AFD is consistent, clean, and of high quality.
-
----
-
-## 🧰 Architecture
-
-![architecture](./images/afd-profiler-architecture.png)
-
-The solution uses a **serverless architecture**:
-
-1. **S3** – Stores input data and profiler reports.
-2. **AWS Lambda** – Orchestrates the profiling pipeline steps.
-3. **AWS Glue** – Performs schema validation, missing value checks, and data type inference.
-4. **Amazon Fraud Detector** – Consumes profiled data to build models.
-5. **AWS Step Functions** – Coordinates all services as a serverless pipeline.
+It is based on the [AWS blog](https://aws.amazon.com/blogs/machine-learning/automate-data-profiling-and-cleaning-for-fraud-detector-datasets/) by **Hao Zhou** and **Anqi Cheng**, tailored for real-world enterprise use cases.
 
 ---
 
-## 🚀 Key Features
+## 🏗️ Architecture
 
-✅ Automated data quality checks  
-✅ Schema and format validation  
-✅ Numeric and categorical feature profiling  
-✅ Missing and invalid value detection  
-✅ Visual report generation  
-✅ Easy integration with AFD training datasets  
-✅ Scalable and serverless design  
+The project follows a fully serverless architecture using the following AWS services:
 
----
+- **Amazon S3**: Stores raw input data, profiling reports, and cleaned CSVs
+- **AWS Lambda**: Triggers the workflow and orchestrates AWS Glue jobs
+- **AWS Glue**: Handles data profiling, transformation, and export
+- **AWS CloudFormation**: Automates the deployment of all components
 
-## 🧱 Tech Stack
+📊 Outputs:
+- **HTML profiling reports**
+- **Cleaned, transformed CSVs**
 
-| Service | Purpose |
-|--------|---------|
-| **AWS S3** | Store input datasets and profiling reports |
-| **AWS Lambda** | Execute code snippets and control flow |
-| **AWS Glue** | ETL and profiling logic (PySpark or Python shell) |
-| **AWS Step Functions** | Pipeline orchestration |
-| **Amazon Fraud Detector** | Model training and fraud prediction |
-| **CloudWatch** | Logs and metrics for debugging |
+![Architecture Diagram](./images/architecture.png)
 
 ---
 
-## ⚙️ Setup Instructions
+## ✨ Key Features
 
-1. **Clone the Repo**
-   ```bash
-   git clone https://github.com/your-username/afd-automated-profiler.git
-   cd afd-automated-profiler
+- 📋 **Data Profiling**: Automated analysis using AWS Glue to assess column types, nulls, uniqueness, etc.
+- 🧹 **Data Cleaning**: Removes duplicates, handles missing values, and converts types
+- 📁 **Exported Artifacts**:
+  - `report.html`: Profiling summary
+  - `cleaned_data.csv`: Final dataset for ML
+- ☁️ **CloudFormation Integration**: One-click stack deployment for fast onboarding
+- 🔁 **Fully Reproducible**: Designed for repeated experimentation and versioned datasets
+
+---
+
+## 🚀 Technologies Used
+
+| Service         | Purpose                              |
+|-----------------|--------------------------------------|
+| AWS Lambda      | Trigger Glue jobs and handle logic   |
+| AWS Glue        | Profile and clean raw CSV datasets   |
+| Amazon S3       | Data storage and reporting output    |
+| CloudFormation  | Infra as Code for easy setup         |
+
+---
+
+## 🧰 Setup Instructions
+
+### Prerequisites
+- AWS Account with permission to use Lambda, Glue, S3, CloudFormation
+- Python 3.8+ and AWS CLI configured
+- IAM Role for Glue and Lambda
+
+### 🚨 Steps
+
+1. **Clone the Repository**
+
+```bash
+git clone https://github.com/Lokesh05122003/Fraud-Detection-Dataset-Profiler-and-Cleaner.git
+cd Fraud-Detection-Dataset-Profiler-and-Cleaner
